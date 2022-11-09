@@ -1,6 +1,6 @@
 #include <raylib.h>
 #include <raymath.h>
-
+#include "Audio.h"
 //------------------------------------------------------------------------------------
 // Program main entry point
 //------------------------------------------------------------------------------------
@@ -13,13 +13,15 @@ int main(void)
     const char* testText = "RASPMAN";
 
     InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
-
+    InitAudioDevice();      	// Initialize audio device
     SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------
 
     //Global Variables
     //--------------------------------------------------------------------------------------
     //
+    Audio audio_control;  // intialize the audio constructor
+    audio_control.playAudio(0);  // play the background music
     //--------------------------------------------------------------------------------------
 
     // Main game loop
@@ -29,7 +31,7 @@ int main(void)
         //----------------------------------------------------------------------------------
         // TODO: Update your variables here
         //----------------------------------------------------------------------------------
-
+        if (IsKeyPressed(KEY_SPACE)) audio_control.playAudio(1);
         // Draw
         //----------------------------------------------------------------------------------
         BeginDrawing();
@@ -45,6 +47,7 @@ int main(void)
 
     // De-Initialization
     //--------------------------------------------------------------------------------------
+    CloseAudioDevice();   // Close audio device
     CloseWindow();        // Close window and OpenGL context
     //--------------------------------------------------------------------------------------
 
