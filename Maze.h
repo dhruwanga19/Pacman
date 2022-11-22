@@ -1,9 +1,9 @@
 #pragma once
 
-// Checks if _ANIMALS IF DECLARED
+// Checks if _MAZE IF DECLARED
 #ifndef _MAZE_
 
-// Defines _ANIMALS_ if above
+// Defines _MAZE_ if above
 // conditions fails
 #define _MAZE_
 
@@ -14,25 +14,38 @@
 #include <vector>
 #include "Tile.h"
 #include <iterator>
+#include "Sprite.h"
 
-const std::string MAP_PATH = "/assets/maps";
+const std::string MAP_PATH = "../MyGame/assets/maps/";
+const std::string MAP_TEXTURE = "../MyGame/assets/maps/textures/";
+const int ROW_LENGTH = 22;
+const int COLUMN_LENGTH = 21;
 
 class Maze {
-	private:Tile tileBoard[28][31];
+private:std::vector<std::vector<Tile>> tileBoard;
 
-/* DEFAULT Constructor */
+	   /* DEFAULT Constructor */
 public:Maze();
 
-/* Constructor */
+	  /* Constructor */
 public:Maze(std::string mapFileName);
 
-/* Destructor */
+	  /* Destructor */
 public:~Maze();
 
-/*Getter Method: Tile from tileBoard*/
+	  /* drawMaze: Simple Draws the Maze using simple shapes */
+public:void drawMaze();
+
+	  /* drawMazeEX: Textured Map Drawing Function */
+public:void drawMazeEX();
+
+	  /* drawMazeEX: Textured Map Drawing Function + Texture */
+public:void drawMazeEX(std::string textureFile);
+
+	  /* Getter Method: Tile from tileBoard */
 public:Tile getTile(int x, int y);
 
-/* Setter Method: Tile from tileBoard*/
+	  /* Setter Method: Tile from tileBoard */
 public:void setTile(int x, int y, TileType type);
 
 };

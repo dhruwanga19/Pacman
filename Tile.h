@@ -19,6 +19,7 @@ class Tile{
 	private:bool wall; //Defines if it is a wall
 	private:bool pSpawn; // Defines Pacman Spawn point
 	private:int gSpawn; // Defines Ghost Spawn point, and which ghost spawns here
+	//private:Texture2D tileTexture; //Define Tile Texture
 
 /* DEFAULT Constructor */
 public:Tile();
