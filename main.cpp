@@ -2,6 +2,11 @@
 #include "raymath.h"
 #include "Audio.h"
 #include "Maze.h"
+//------------------------------------------------------------------------------------------
+// Types and Structures Definition
+//------------------------------------------------------------------------------------------
+typedef enum GameScreen { LOGO = 0, TITLE, GAMEPLAY, ENDING } GameScreen;
+
 //------------------------------------------------------------------------------------
 // Program main entry point
 //------------------------------------------------------------------------------------
@@ -11,10 +16,13 @@ int main(void)
     //--------------------------------------------------------------------------------------
     const int screenWidth = 672;
     const int screenHeight = 680;
-    const char* testText = "RASPMAN";
+    const char* titleText = "RASPMAN";
+
+    GameScreen currentScreen = LOGO;
 
     InitWindow(screenWidth, screenHeight, "RASPMAN");
     InitAudioDevice();      	// Initialize audio device
+    int framesCounter = 0;          // Useful to count frames
     SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------
 
@@ -22,7 +30,9 @@ int main(void)
     //--------------------------------------------------------------------------------------
     Audio audio_control;  // intialize the audio constructor
     audio_control.playAudio(0);  // play the background music
+    
     Maze map = Maze("DEFAULT_MAP.txt");
+    Sprite map_sprites = Sprite("../MyGame/assets/maps/textures/DEFAULT_TEXTURE.png");
     //--------------------------------------------------------------------------------------
 
     // Main game loop
@@ -30,25 +40,91 @@ int main(void)
     {
         // Update
         //----------------------------------------------------------------------------------
-        // TODO: Update your variables here
+        switch (currentScreen)
+        {
+        case LOGO:
+        {
+            // TODO: Update LOGO screen variables here!
+
+            framesCounter++;    // Count frames
+
+            // Wait for 2 seconds (120 frames) before jumping to TITLE screen
+            if (framesCounter > 120)
+            {
+                currentScreen = TITLE;
+            }
+        } break;
+        case TITLE:
+        {
+            // TODO: Update TITLE screen variables here!
+
+            // Press enter to change to GAMEPLAY screen
+            if (IsKeyPressed(KEY_ENTER) || IsGestureDetected(GESTURE_TAP))
+            {
+                currentScreen = GAMEPLAY;
+            }
+        } break;
+        case GAMEPLAY:
+        {
+            // TODO: Update GAMEPLAY screen variables here!
+
+            // Press enter to change to ENDING screen
+            if (IsKeyPressed(KEY_ENTER) || IsGestureDetected(GESTURE_TAP))
+            {
+                currentScreen = ENDING;
+            }
+        } break;
+        case ENDING:
+        {
+            // TODO: Update ENDING screen variables here!
+
+            // Press enter to return to TITLE screen
+            if (IsKeyPressed(KEY_ENTER) || IsGestureDetected(GESTURE_TAP))
+            {
+                currentScreen = TITLE;
+            }
+        } break;
+        default: break;
+        }
         //----------------------------------------------------------------------------------
-        if (IsKeyPressed(KEY_SPACE)) audio_control.playAudio(1);
         // Draw
         //----------------------------------------------------------------------------------
         BeginDrawing();
 
         ClearBackground(BLACK);
 
-        // Draw the Map
-        //Maze map = Maze("DEFAULT_MAP.txt");
-        //Maze map = Maze();
-        //map.drawMaze();
-        map.drawMazeEX();
+        switch (currentScreen)
+        {
+        case LOGO:
+        {
+            // TODO: Draw LOGO screen here!
+            DrawText("LOGO SCREEN", 20, 20, 40, LIGHTGRAY);
+            DrawText("WAIT for 2 SECONDS...", 290, 220, 20, WHITE);
 
-        //Draw Title
-        Vector2 textOffset = MeasureTextEx(GetFontDefault(), testText, 20, 0);
-        Vector2 textPos{ (screenWidth / 2) - textOffset.x, (screenHeight / 2) - textOffset.y };
-        DrawTextEx(GetFontDefault(), testText, textPos, 20, 10, WHITE);
+        } break;
+        case TITLE:
+        {
+            // TODO: Draw TITLE screen here!
+            Vector2 textOffset = MeasureTextEx(GetFontDefault(), titleText, 20, 0);
+            Vector2 textPos{ (screenWidth / 2) - textOffset.x, (screenHeight / 2) - textOffset.y };
+            DrawTextEx(GetFontDefault(), titleText, textPos, 20, 10, WHITE);
+
+        } break;
+        case GAMEPLAY:
+        {
+            // TODO: Draw GAMEPLAY screen here!
+            map.drawMazeEX(map_sprites);
+
+        } break;
+        case ENDING:
+        {
+            // TODO: Draw ENDING screen here!
+            DrawText("ENDING SCREEN", 20, 20, 40, DARKBLUE);
+            DrawText("PRESS ENTER or TAP to RETURN to TITLE SCREEN", 120, 220, 20, DARKBLUE);
+
+        } break;
+        default: break;
+        }
 
         EndDrawing();
         //----------------------------------------------------------------------------------

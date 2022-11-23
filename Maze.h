@@ -42,6 +42,9 @@ public:void drawMazeEX();
 	  /* drawMazeEX: Textured Map Drawing Function + Texture */
 public:void drawMazeEX(std::string textureFile);
 
+	  /* drawMazeEX: Textured Map Drawing Function + Preloaded Texture*/
+public:void drawMazeEX(Sprite map_sprites);
+
 	  /* Getter Method: Tile from tileBoard */
 public:Tile getTile(int x, int y);
 
