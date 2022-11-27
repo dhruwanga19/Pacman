@@ -7,7 +7,7 @@
 // conditions fails
 #define _TILE_
 
-#include <raylib.h>
+#include <include/raylib.h>
 #include <string>
 
 enum TileType {EMPTY, V_WALL, H_WALL, TL_CORNER, TR_CORNER, BL_CORNER, BR_CORNER, DOOR};
