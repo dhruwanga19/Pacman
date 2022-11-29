@@ -1,6 +1,10 @@
 #include "Sprite.h"
 
 Sprite::Sprite(std::string Sprite) {
+	//std::string sPath;
+	//sPath.append(SPRITE_PATH);
+	//sPath.append(Sprite);
+	//printf(sPath.c_str());
 	this->texture = LoadTexture(Sprite.c_str());
 	this->frameSize = { 16, 16 };
 	this->maxFrame = 19;
