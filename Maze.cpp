@@ -407,6 +407,11 @@ void Maze::setTile(int x, int y, TileType type) {
 	this->tileBoard[x][y] = Tile(type);
 }
 
+std::vector<std::vector<Tile>> Maze::getTileBoard()
+{
+	return this->tileBoard;
+}
+
 Tile Maze::getTile(int x, int y){
 	return tileBoard[x][y];
 }

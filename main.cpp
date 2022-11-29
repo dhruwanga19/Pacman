@@ -112,6 +112,7 @@ int main(void)
         {
             // TODO: Draw GAMEPLAY screen here!
             map.drawMazeEX(map_sprites);
+            //map.drawMazeEX();
 
         } break;
         case ENDING:

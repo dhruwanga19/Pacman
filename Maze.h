@@ -7,7 +7,7 @@
 // conditions fails
 #define _MAZE_
 
-#include <include/raylib.h>
+#include <raylib.h>
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -22,34 +22,58 @@ const int ROW_LENGTH = 22;
 const int COLUMN_LENGTH = 21;
 
 class Maze {
-private:std::vector<std::vector<Tile>> tileBoard;
+private:std::vector<std::vector<Tile>> tileBoard; // 2D Vector to store tiles
+private:int numDots;
 
-	   /* DEFAULT Constructor */
+	   /*! \brief DEFAULT Constructor. 
+	    *
+		*  This MAZE constructor uses a hardcoded default map to construct a maze object.
+	    */
 public:Maze();
 
-	  /* Constructor */
+	  /*! \brief Constructor 
+	   *
+	   * This constructor takes in a textfile containing a map to construct a map object.
+	   */
 public:Maze(std::string mapFileName);
 
-	  /* Destructor */
 public:~Maze();
 
-	  /* drawMaze: Simple Draws the Maze using simple shapes */
+	  /*! \brief drawMaze: Simple Map Drawing Function. 
+	   * 
+	   * Draws the maze object using simple rectangles to represent the walls.
+	   */
 public:void drawMaze();
 
-	  /* drawMazeEX: Textured Map Drawing Function */
+	  /*! \brief drawMazeEX: Textured Map Drawing Function 
+	   *
+	   * Draws the maze object using the DEFAULT texture, using internal logic to determine what frame to render.
+	   * (ONLY FOR TESTING, MAY CAUSE MEMORY LEAK)
+	   */
 public:void drawMazeEX();
 
-	  /* drawMazeEX: Textured Map Drawing Function + Texture */
+	  /*! \brief drawMazeEX: Textured Map Drawing Function + Texture 
+	   *
+	   * Draws the maze object using the texture file supplied, using internal logic to determine what frame to render.
+	   * (ONLY FOR TESTING, MAY CAUSE MEMORY LEAK)
+	  */
 public:void drawMazeEX(std::string textureFile);
 
-	  /* drawMazeEX: Textured Map Drawing Function + Preloaded Texture*/
+	  /*! \brief drawMazeEX: Textured Map Drawing Function + Preloaded Texture
+	   *
+	   * Draws the maze object using preloaded textures from main, using internal logic to determine what frame to render.
+	   * (USE THIS IN FORMAL IMPLEMENTATION)
+	  */
 public:void drawMazeEX(Sprite map_sprites);
 
-	  /* Getter Method: Tile from tileBoard */
+	  /*! \brief Getter Method: Tile from tileBoard */
 public:Tile getTile(int x, int y);
 
-	  /* Setter Method: Tile from tileBoard */
+	  /*! \brief Setter Method: Tile from tileBoard */
 public:void setTile(int x, int y, TileType type);
+
+	  /*! \brief Getter Method: Tile */
+public:std::vector<std::vector<Tile>> getTileBoard();
 
 };
 

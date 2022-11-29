@@ -1,5 +1,14 @@
 #include "Sprite.h"
 
+Sprite::Sprite(){
+	this->texture = LoadTexture("../MyGame/assets/maps/textures/DEFAULT_TEXTURE.png");
+	this->frameSize = { 16, 16 };
+	this->maxFrame = 19;
+	this->framesWide = 16;
+	this->origin = { 128, 16 };
+	this->frame = 0;
+}
+
 Sprite::Sprite(std::string Sprite) {
 	//std::string sPath;
 	//sPath.append(SPRITE_PATH);

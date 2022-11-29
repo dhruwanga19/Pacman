@@ -25,7 +25,10 @@ class Sprite {
     Vector2 origin;
     int frame;
 
-/* Default Constructor */
+/* DEFAULT Constructor */
+public:Sprite();
+
+/* Constructor */
 public:Sprite(std::string Sprite);
 
 /* Extended Constructor: Adjust Dimensions*/
