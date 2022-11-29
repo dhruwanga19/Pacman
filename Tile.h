@@ -15,8 +15,9 @@ enum TileType {EMPTY, V_WALL, H_WALL, TL_CORNER, TR_CORNER, BL_CORNER, BR_CORNER
 class Tile{
 	//bool legalTile;
 	private:TileType tileType;
-	private:int pellet; //Defines if it contains a Pellet or Super Pellet
-	private:bool wall; //Defines if it is a wall
+	private:int pellet; // Defines if it contains PELLET
+	private:bool superPellet; // Defines if it has a super pellet.
+	private:bool wall; // Defines if it is a wall
 	private:bool pSpawn; // Defines Pacman Spawn point
 	private:int gSpawn; // Defines Ghost Spawn point, and which ghost spawns here
 	//private:Texture2D tileTexture; //Define Tile Texture
@@ -38,6 +39,12 @@ public:int hasPellet();
 
 /* Setter Method: pellet*/
 public:void setPellet(int pellet);
+
+/* Getter Method: SuperPellet*/
+public:bool hasSuperPellet();
+
+/* Setter Method: SuperPellet*/
+public:void setSuperPellet(bool pellet);
 
 /* Getter Method: wall */
 public:bool isWall();

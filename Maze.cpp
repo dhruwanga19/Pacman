@@ -4,6 +4,7 @@
 Maze::Maze(){
 	//Init tileBoard
 	this->tileBoard = std::vector<std::vector<Tile>>(COLUMN_LENGTH, std::vector<Tile>(ROW_LENGTH, Tile()));
+	this->numDots = 0;
 
 	// Create text string
 	std::string map_buffer[] = { 
@@ -37,8 +38,10 @@ Maze::Maze(){
 				newTile.set_Wall(true);
 			case '.':
 				newTile.setPellet(1);
+				numDots++;
 			case 'o':
 				newTile.setPellet(2);
+				numDots++;
 			case 'P':
 				newTile.setPSpawn(true);
 			case '1':
@@ -80,7 +83,8 @@ Maze::Maze(std::string mapFileName){
 				case '.':
 					newTile.setPellet(1);
 				case 'o':
-					newTile.setPellet(2);
+					newTile.setPellet(1);
+					newTile.setSuperPellet(true);
 				case 'P':
 					newTile.setPSpawn(true);
 				case '1':
@@ -393,7 +397,20 @@ void Maze::drawMazeEX(Sprite map_sprites){
 				else if (l && r && u && d) {
 					map_sprites.changeFrame(static_cast<int>(spriteType::INTERSECTION));
 				}
-
+				// Declare offsets and Draw Sprite
+				int posX = j * 8 * 4;
+				int posY = i * 8 * 4;
+				map_sprites.drawSprite(posX + 256, posY + 32, 0, 2, WHITE);
+			}
+			else if(tileBoard[i][j].hasPellet() == 1) {
+				map_sprites.changeFrame(static_cast<int>(spriteType::PELLET));
+				// Declare offsets and Draw Sprite
+				int posX = j * 8 * 4;
+				int posY = i * 8 * 4;
+				map_sprites.drawSprite(posX + 256, posY + 32, 0, 2, WHITE);
+			}
+			else if (tileBoard[i][j].hasSuperPellet()) {
+				map_sprites.changeFrame(static_cast<int>(spriteType::SUPER_PELLET));
 				// Declare offsets and Draw Sprite
 				int posX = j * 8 * 4;
 				int posY = i * 8 * 4;

@@ -3,6 +3,7 @@
 Tile::Tile(){
 	this->tileType = EMPTY;
 	this->pellet = false;
+	this->superPellet = false;
 	this->wall = false;
 	this->pSpawn = false;
 	this->gSpawn = false;
@@ -11,6 +12,7 @@ Tile::Tile(){
 Tile::Tile(TileType type){
 	this->tileType = type;
 	this->pellet = false;
+	this->superPellet = false;
 	if (type != EMPTY) {
 		this->wall = true;
 	}
@@ -24,6 +26,7 @@ Tile::Tile(TileType type){
 Tile::Tile(TileType type, bool p, int g){
 	this->tileType = type;
 	this->pellet = false;
+	this->superPellet = false;
 	if (type != EMPTY) {
 		this->wall = true;
 	}
@@ -44,6 +47,14 @@ int Tile::hasPellet(){
 
 void Tile::setPellet(int pellet){
 	this->pellet = pellet;
+}
+
+bool Tile::hasSuperPellet() {
+	return this->superPellet;
+}
+
+void Tile::setSuperPellet(bool pellet) {
+	this->superPellet = pellet;
 }
 
 bool Tile::isWall(){
