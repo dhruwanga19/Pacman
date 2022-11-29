@@ -7,7 +7,7 @@
 // conditions fails
 #define _SPRITE_
 
-#include <include/raylib.h>
+#include <raylib.h>
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -25,8 +25,11 @@ class Sprite {
     Vector2 origin;
     int frame;
 
-/* Constructor */
+/* Default Constructor */
 public:Sprite(std::string Sprite);
+
+/* Extended Constructor: Adjust Dimensions*/
+public:Sprite(std::string Sprite, int numFrame, int framesWide, int framesTall);
 
 /* Destructor*/
 public:~Sprite();

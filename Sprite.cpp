@@ -1,11 +1,21 @@
 #include "Sprite.h"
 
-Sprite::Sprite(std::string sPath) {
-	this->texture = LoadTexture(sPath.c_str());
+Sprite::Sprite(std::string Sprite) {
+	this->texture = LoadTexture(Sprite.c_str());
 	this->frameSize = { 16, 16 };
 	this->maxFrame = 19;
 	this->framesWide = 16;
 	this->origin = { 128, 16 };
+	this->frame = 0;
+}
+
+Sprite::Sprite(std::string Sprite, int numFrame, int framesWide, int framesTall){
+	this->texture = LoadTexture(Sprite.c_str());
+	this->frameSize = { 16, 16 };
+	this->maxFrame = numFrame;
+	this->framesWide = framesWide;
+	this->origin.x = (frameSize.x * framesWide) / 2;
+	this->origin.y = (frameSize.y * framesTall) / 2;
 	this->frame = 0;
 }
 
