@@ -27,8 +27,9 @@ Sprite::Sprite(std::string Sprite, int numFrame, int framesWide, int framesTall)
 	this->frameSize = { 16, 16 };
 	this->maxFrame = numFrame;
 	this->framesWide = framesWide;
-	this->origin.x = (frameSize.x * framesWide) / 2;
-	this->origin.y = (frameSize.y * framesTall) / 2;
+	//this->origin.x = (frameSize.x * framesWide) / 2;
+	//this->origin.y = (frameSize.y * framesTall) / 2;
+	this->origin = { 0,0 };
 	this->frame = 0;
 }
 
