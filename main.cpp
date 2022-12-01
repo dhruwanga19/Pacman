@@ -30,7 +30,7 @@ int main(void)
     audio_control.playAudio(0);  // play the background music
     
     Maze map = Maze("DEFAULT_MAP.txt");
-    Sprite map_sprites = Sprite("../MyGame/assets/maps/textures/DEFAULT_TEXTURE.png");
+    Sprite map_sprites = Sprite("./assets/maps/textures/DEFAULT_TEXTURE.png");
     //--------------------------------------------------------------------------------------
 
     // Main game loop

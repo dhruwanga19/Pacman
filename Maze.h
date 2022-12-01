@@ -16,8 +16,8 @@
 #include <iterator>
 #include "Sprite.h"
 
-const std::string MAP_PATH = "../MyGame/assets/maps/";
-const std::string MAP_TEXTURE = "../MyGame/assets/maps/textures/";
+const std::string MAP_PATH = "./assets/maps/";
+const std::string MAP_TEXTURE = "./assets/maps/textures/";
 const int ROW_LENGTH = 22;
 const int COLUMN_LENGTH = 21;
 

@@ -67,7 +67,7 @@ Maze::Maze(std::string mapFileName){
 	//Read mapFile
 	std::ifstream mapFile;
 	//std::string mapFilepath = MAP_PATH + mapFileName;
-	std::string mapFilepath = "../MyGame/assets/maps/DEFAULT_MAP.txt";
+	std::string mapFilepath = "./assets/maps/DEFAULT_MAP.txt";
 	mapFile.open(mapFilepath);
 
 	//Init Tile Board
@@ -123,7 +123,7 @@ void Maze::drawMaze() {
 }
 
 void Maze::drawMazeEX() {
-	Sprite map_sprites = Sprite("../MyGame/assets/maps/textures/DEFAULT_TEXTURE.png");
+	Sprite map_sprites = Sprite("./assets/maps/textures/DEFAULT_TEXTURE.png");
 	for (size_t i = 0; i < tileBoard.size(); i++) {
 		for (size_t j = 0; j < tileBoard[i].size(); j++) {
 			// Simple mode: draw rectangle at correct position

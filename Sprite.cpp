@@ -1,7 +1,7 @@
 #include "Sprite.h"
 
 Sprite::Sprite(){
-	this->texture = LoadTexture("../MyGame/assets/maps/textures/DEFAULT_TEXTURE.png");
+	this->texture = LoadTexture("./assets/maps/textures/DEFAULT_TEXTURE.png");
 	this->frameSize = { 16, 16 };
 	this->maxFrame = 19;
 	this->framesWide = 16;
@@ -29,7 +29,7 @@ Sprite::Sprite(std::string Sprite, int numFrame, int framesWide, int framesTall)
 	this->framesWide = framesWide;
 	//this->origin.x = (frameSize.x * framesWide) / 2;
 	//this->origin.y = (frameSize.y * framesTall) / 2;
-	this->origin = { 0,0 };
+	this->origin = { 8,8 };
 	this->frame = 0;
 }
 
