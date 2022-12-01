@@ -354,7 +354,7 @@ OBJ_DIR = obj
 # Define all object files from source files
 SRC = $(call rwildcard, *.c, *.h)
 #OBJS = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
-OBJS ?= main.cpp Audio.cpp Maze.cpp Tile.cpp Sprite.cpp
+OBJS ?= main.cpp Audio.cpp Maze.cpp Tile.cpp Sprite.cpp Pacman.cpp Ghost.cpp Entity.cpp GameManager.cpp
 
 # For Android platform we call a custom Makefile.Android
 ifeq ($(PLATFORM),PLATFORM_ANDROID)
