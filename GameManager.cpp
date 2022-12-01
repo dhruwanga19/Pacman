@@ -87,7 +87,7 @@ void GameManager::displayFigures(){
 
 	int posX = pacman.getX() * 8 * 4;
 	int posY = pacman.getY() * 8 * 4;
-	pacman.drawSprite(posX, posY, pacman.getAng(), pacman.getScale(), WHITE);
+	pac_man_sprite.drawSprite(posX, posY, pacman.getAng(), pacman.getScale(), WHITE);
 
 	posX = red_ghost.getX() * 32;
 	posY = red_ghost.getY() * 32;
@@ -152,15 +152,44 @@ void GameManager::update(){
 
 	if (IsKeyDown(KEY_W) or IsKeyDown(KEY_UP))
 	{
+		if(map.checkInMaze(y_round-1,x_round))
+		{
+			Tile toTile = this->map.getTile(y_round-1,x_round);
+			if (!toTile.isWall() or (toTile.isWall() and y_round<pacman.getY()))
+			{
+				float y = pacman.getY() - GetFrameTime() * 2.f;
+				pacman.setY(y);
+			}
+		}
+		
 
 		// pac_man.setAng(270);
 
 		// move forwards 
-		if(map.checkInMaze(x_round-1,y_round)){
-			Tile toTile = this->map.getTile(x_round-1,y_round);
-			if (!toTile.isWall() or (toTile.isWall() and x_round<pacman.getX()))
+		
+	}
+	else if (IsKeyDown(KEY_S) or IsKeyDown(KEY_DOWN))
+	{
+		if(map.checkInMaze(y_round+1,x_round))
+		{
+			Tile toTile = this->map.getTile(y_round+1,x_round);
+			if (!toTile.isWall() or (toTile.isWall() and y_round>pacman.getY()))
 			{
-				float x = pacman.getX() - GetFrameTime() * 1.f;
+				float y = pacman.getY() + GetFrameTime() * 2.f;
+				pacman.setY(y);
+			}
+		}
+		// pac_man.setAng(180);
+		
+	}
+	else if (IsKeyDown(KEY_A) or IsKeyDown(KEY_LEFT) )
+	{
+
+		if(map.checkInMaze(y_round,x_round-1)){
+			Tile toTile = this->map.getTile(y_round,x_round-1);
+			if (!toTile.isWall() or (toTile.isWall() and x_round<pacman.getX()))
+		{
+				float x = pacman.getX() - GetFrameTime() * 2.f;
 				pacman.setX(x);
 			}
 			// else if (toTile.isWall() and x_round>pac_man.getX())
@@ -169,49 +198,24 @@ void GameManager::update(){
 			// 	pac_man.setX(x_round);
 			// }
 		}
-	}
-	else if (IsKeyDown(KEY_S) or IsKeyDown(KEY_DOWN))
-	{
-		// pac_man.setAng(90);
-		if(map.checkInMaze(x_round+1,y_round))
-		{
-			Tile toTile = this->map.getTile(x_round+1,y_round);
-			if (!toTile.isWall() or (toTile.isWall() and x_round>pacman.getX()))
-			{
-				float x = pacman.getX() + GetFrameTime() * 1.f;
-				pacman.setX(x);
-			}
-		}
 
-		
-	}
-	else if (IsKeyDown(KEY_A) or IsKeyDown(KEY_LEFT) )
-	{
-		// pac_man.setAng(180);
-		if(map.checkInMaze(x_round,y_round-1))
-		{
-			Tile toTile = this->map.getTile(x_round,y_round-1);
-			if (!toTile.isWall() or (toTile.isWall() and y_round<pacman.getY()))
-			{
-				float y = pacman.getY() - GetFrameTime() * 1.f;
-				pacman.setY(y);
-			}
-		}
 
 		
 	}
 	else if (IsKeyDown(KEY_D) or IsKeyDown(KEY_RIGHT))
 	{
-		// pac_man.setAng(0);
-		if(map.checkInMaze(x_round,y_round+1))
+		// pac_man.setAng(90);
+		if(map.checkInMaze(y_round,x_round+1))
 		{
-			Tile toTile = this->map.getTile(x_round,y_round+1);
-			if (!toTile.isWall() or (toTile.isWall() and y_round>pacman.getY()))
+			Tile toTile = this->map.getTile(y_round,x_round+1);
+			if (!toTile.isWall() or (toTile.isWall() and x_round>pacman.getX()))
 			{
-				float y = pacman.getY() + GetFrameTime() * 1.f;
-				pacman.setY(y);
+				float x = pacman.getX() + GetFrameTime() * 2.f;
+				pacman.setX(x);
 			}
 		}
+		// pac_man.setAng(0);
+
 	}
 	drawMap();
 	displayFigures();

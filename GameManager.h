@@ -37,6 +37,7 @@ class GameManager {
 		
 		enum arrowKeys : int { UP, DOWN, LEFT, RIGHT };
 		enum pacmanSprites : int { OPEN, CLOSING, CLOSED };
+		Sprite pac_man_sprite = Sprite("./assets/sprites/DEFAULT_PACMAN.png", 14, 14, 1);
 		bool pause_flag;  // flag to show the game is paused
 		int score;
 		int num_ghosts;

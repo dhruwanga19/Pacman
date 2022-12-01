@@ -29,7 +29,7 @@ Sprite::Sprite(std::string Sprite, int numFrame, int framesWide, int framesTall)
 	this->framesWide = framesWide;
 	//this->origin.x = (frameSize.x * framesWide) / 2;
 	//this->origin.y = (frameSize.y * framesTall) / 2;
-	this->origin = { 8,8 };  // {0, 0}
+	this->origin = {0, 0}; // { 8,8 };  
 	this->frame = 0;
 }
 
@@ -56,7 +56,7 @@ void Sprite::drawSprite(float x, float y, float ang, float scale, Color c) {
 	Rectangle destRect = { x, y, this->frameSize.x * scale, this->frameSize.y * scale };
 	Vector2 originV = { this->origin.x * scale, this->origin.y * scale };
 	// Draw Rectangle (Hitbox)
-	DrawRectangle(x, y, 16, 16, WHITE);
+	// DrawRectangle(x, y, 16, 16, WHITE);
 	// Draw Texture
 	DrawTexturePro(this->texture, sourceRect, destRect, originV, ang, c);
 }
