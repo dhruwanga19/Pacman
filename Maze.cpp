@@ -428,6 +428,16 @@ std::vector<std::vector<Tile>> Maze::getTileBoard()
 	return this->tileBoard;
 }
 
+int Maze::getColLength()
+{
+	return COLUMN_LENGTH;
+}
+
+int Maze::getRowLength()
+{
+	return ROW_LENGTH;
+}
+
 Tile Maze::getTile(int x, int y){
 	return tileBoard[x][y];
 }

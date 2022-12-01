@@ -115,6 +115,10 @@ public:void setTile(int x, int y, TileType type);
 	   */
 public:std::vector<std::vector<Tile>> getTileBoard();
 
+public:int getColLength();
+
+public:int getRowLength();
+
 };
 
 #endif // _MAZE_

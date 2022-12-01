@@ -41,6 +41,11 @@ void Sprite::changeFrame(int f){
 	this->frame = f;
 }
 
+int Sprite::getFrame()
+{
+	return this->frame;
+}
+
 void Sprite::drawSprite(float x, float y, float ang, float scale, Color c) {
 	// Determine origin
 	float ox, oy;
@@ -50,6 +55,8 @@ void Sprite::drawSprite(float x, float y, float ang, float scale, Color c) {
 	Rectangle sourceRect = { ox, oy, this->frameSize.x, this->frameSize.y };
 	Rectangle destRect = { x, y, this->frameSize.x * scale, this->frameSize.y * scale };
 	Vector2 originV = { this->origin.x * scale, this->origin.y * scale };
+	// Draw Rectangle (Hitbox)
+	DrawRectangle(x, y, 16, 16, WHITE);
 	// Draw Texture
 	DrawTexturePro(this->texture, sourceRect, destRect, originV, ang, c);
 }

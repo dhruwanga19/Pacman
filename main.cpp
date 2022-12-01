@@ -31,6 +31,7 @@ int main(void)
     
     Maze map = Maze("DEFAULT_MAP.txt");
     Sprite map_sprites = Sprite("./assets/maps/textures/DEFAULT_TEXTURE.png");
+    GameManager manager = GameManager();
     //--------------------------------------------------------------------------------------
 
     // Main game loop
@@ -111,8 +112,8 @@ int main(void)
         case GAMEPLAY:
         {
             // TODO: Draw GAMEPLAY screen here!
-            map.drawMazeEX(map_sprites);
-            //map.drawMazeEX();
+            //map.drawMazeEX(map_sprites);
+            map.drawMaze();
 
         } break;
         case ENDING:

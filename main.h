@@ -11,5 +11,6 @@
 #include "raymath.h"
 #include "Audio.h"
 #include "Maze.h"
+#include "GameManager.h"
 
 #endif // _GAME_

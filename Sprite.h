@@ -93,6 +93,11 @@ public:~Sprite();
 public:void changeFrame(int f);
 
       /**
+       * @brief Get the current frame number.
+       */
+public: int getFrame();
+
+      /**
        * @brief Draw the Sprite given position, angle, scale and color.
        * @param x Horizontal position of Sprite
        * @param y Vertical position of Sprite
