@@ -34,7 +34,7 @@ const std::string MAP_TEXTURE = "./assets/maps/textures/";
 /**
  * @brief Row length of map, used when reading map file and initilizing tileBoard.
  */
-const int ROW_LENGTH = 22;
+const int ROW_LENGTH = 21;
 /**
  * @brief Column length of map, used when reading map file and initilizing tileBoard.
  */
@@ -119,6 +119,10 @@ public:int getColLength();
 
 public:int getRowLength();
 
+public:bool checkInMaze(int x, int y){
+	return (x>0) and (y>0) and (x<COLUMN_LENGTH) and (y<ROW_LENGTH);
+
+}
 };
 
 #endif // _MAZE_

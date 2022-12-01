@@ -29,8 +29,8 @@ int main(void)
     Audio audio_control;  // intialize the audio constructor
     audio_control.playAudio(0);  // play the background music
     
-    Maze map = Maze("DEFAULT_MAP.txt");
-    Sprite map_sprites = Sprite("./assets/maps/textures/DEFAULT_TEXTURE.png");
+    // Maze map = Maze("DEFAULT_MAP.txt");
+    // Sprite map_sprites = Sprite("./assets/maps/textures/DEFAULT_TEXTURE.png");
     GameManager manager = GameManager();
     //--------------------------------------------------------------------------------------
 
@@ -66,12 +66,12 @@ int main(void)
         case GAMEPLAY:
         {
             // TODO: Update GAMEPLAY screen variables here!
-
+             manager.update();
             // Press enter to change to ENDING screen
-            if (IsKeyPressed(KEY_ENTER) || IsGestureDetected(GESTURE_TAP))
-            {
-                currentScreen = ENDING;
-            }
+            // if (IsKeyPressed(KEY_ENTER) || IsGestureDetected(GESTURE_TAP))
+            // {
+            //     currentScreen = ENDING;
+            // }
         } break;
         case ENDING:
         {
@@ -113,7 +113,7 @@ int main(void)
         {
             // TODO: Draw GAMEPLAY screen here!
             //map.drawMazeEX(map_sprites);
-            map.drawMaze();
+            // map.drawMaze();
 
         } break;
         case ENDING:

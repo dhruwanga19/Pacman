@@ -3,9 +3,8 @@
 
 Maze::Maze(){
 	//Init tileBoard
-	this->tileBoard = std::vector<std::vector<Tile>>(COLUMN_LENGTH, std::vector<Tile>(ROW_LENGTH, Tile()));
+	this->tileBoard = std::vector<std::vector<Tile>>(ROW_LENGTH, std::vector<Tile>(COLUMN_LENGTH, Tile()));
 	this->numDots = 0;
-
 	// Create text string
 	std::string map_buffer[] = { 
 		" ################### ",
@@ -36,22 +35,30 @@ Maze::Maze(){
 			switch (map_buffer[i][j]){
 			case '#':
 				newTile.set_Wall(true);
+				break;
 			case '.':
 				newTile.setPellet(1);
 				numDots++;
+				break;
 			case 'o':
 				newTile.setPellet(2);
 				numDots++;
+				break;
 			case 'P':
 				newTile.setPSpawn(true);
+				break;
 			case '1':
 				newTile.setGSpawn(1);
+				break;
 			case '2':
 				newTile.setGSpawn(2);
+				break;
 			case '3':
 				newTile.setGSpawn(3);
+				break;
 			case '4':
 				newTile.setGSpawn(4);
+				break;
 			default:
 				break;
 			}
@@ -61,8 +68,8 @@ Maze::Maze(){
 }
 
 Maze::Maze(std::string mapFileName){
-	//Init tileBoard
-	this->tileBoard = std::vector<std::vector<Tile>>(21, std::vector<Tile>(22, Tile()));
+	//Init tileBoard								21              22
+	this->tileBoard = std::vector<std::vector<Tile>>(ROW_LENGTH, std::vector<Tile>(COLUMN_LENGTH, Tile()));
 
 	//Read mapFile
 	std::ifstream mapFile;
@@ -75,26 +82,34 @@ Maze::Maze(std::string mapFileName){
 		std::string line;
 		int i = 0;
 		while (getline(mapFile, line)) {
-			for (int j = 0; j < ROW_LENGTH; j++) {
+			for (int j = 0; j < COLUMN_LENGTH; j++) {
 				Tile newTile;
 				switch (line[j]) {
 				case '#':
 					newTile.set_Wall(true);
+					break;
 				case '.':
 					newTile.setPellet(1);
+					break;
 				case 'o':
 					newTile.setPellet(1);
 					newTile.setSuperPellet(true);
+					break;
 				case 'P':
 					newTile.setPSpawn(true);
+					break;
 				case '1':
 					newTile.setGSpawn(1);
+					break;
 				case '2':
 					newTile.setGSpawn(2);
+					break;
 				case '3':
 					newTile.setGSpawn(3);
+					break;
 				case '4':
 					newTile.setGSpawn(4);
+					break;
 				default:
 					break;
 				}

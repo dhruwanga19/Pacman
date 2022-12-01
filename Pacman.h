@@ -13,10 +13,15 @@ class Pacman: public Entity{
         int getLives();
         void setLives(int lives);
         // void move();
-        
+        void setAng(float ang);
+        float getAng();
+        void setScale(float scale);
+        float getScale();
     private:
 
         int lives;
+        float ang;
+        float scale = 2;
 
 };
 

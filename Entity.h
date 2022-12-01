@@ -4,7 +4,7 @@
 
 #define ENTITY
 
-#include "include\raylib.h"
+#include "include/raylib.h"
 #include "Sprite.h"
 #include "Tile.h"
 
@@ -16,6 +16,8 @@ class Entity{
 
     public:
 
+    Rectangle box;
+
     Entity();
 
     //virtual void move() = 0;
@@ -23,28 +25,28 @@ class Entity{
     //virtual void respawn() = 0;
 
     // Set x position
-    void setX(int x){
+    void setX(float x){
 
         this->xPosition = x;
 
     }
 
     // Set y position
-    void setY(int y){
+    void setY(float y){
 
         this->yPosition = y;
 
     }
 
     // Get x position
-    int getX(){
+    float getX(){
 
         return this->xPosition;
 
     }
 
     //  Get y position
-    int getY(){
+    float getY(){
 
         return this->yPosition;
 
@@ -113,8 +115,8 @@ class Entity{
 
     protected:
 
-    int xPosition;
-    int yPosition;
+    float xPosition;
+    float yPosition;
     Status status;
     Direction direction;
     Sprite sprite;

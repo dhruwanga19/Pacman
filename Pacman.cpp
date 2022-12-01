@@ -23,6 +23,24 @@ void Pacman::setLives(int lives){
 
 }
 
+void Pacman::setAng(float ang){
+    
+    this->ang = ang;
+}
 
+float Pacman::getAng(){
+    
+    return this->ang;
 
+}
 
+void Pacman::setScale(float scale){
+    
+    this->scale = scale;
+}
+
+float Pacman::getScale(){
+    
+    return this->scale;
+
+}

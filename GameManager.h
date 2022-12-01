@@ -9,6 +9,7 @@
 //#include <unistd.h>
 #include <string>
 #include <vector>
+#include <cmath>
 #include "Maze.h"
 #include "Ghost.h"
 #include "Tile.h"

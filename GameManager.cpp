@@ -31,9 +31,9 @@ GameManager::GameManager(){
 	orange_ghost.setSprite(orange_ghost_sprite);
 	
 	//	Check each tile for pacman and ghost starting positions. Set Pacman and Ghost coordinates accordingly.
-	for (int i = 0; i < map.getColLength(); i++)
+	for (int i = 0; i < map.getRowLength(); i++)
 	{
-		for (int j = 0; j < map.getRowLength(); j++)
+		for (int j = 0; j < map.getColLength(); j++)
 		{
 			Tile currentTile = this->map.getTile(i , j);
 
@@ -41,8 +41,8 @@ GameManager::GameManager(){
 			{
 				
 				pacman.setX(j);
-		
 				pacman.setY(i);
+				pacman.box = {float(i) * 8 * 4 - 16, float(j) * 8 * 4 - 16, 32, 32};
 			}
 			else if(currentTile.isGSpawn())	// If tile is ghost spawn -> enter switch statement.
 			{
@@ -51,18 +51,22 @@ GameManager::GameManager(){
 				case(1):
 					red_ghost.setX(j);
 					red_ghost.setY(i);
+					red_ghost.box = {float(i) * 8 * 4 - 16, float(j) * 8 * 4 - 16, 32, 32};
 					break;
 				case(2):
 					blue_ghost.setX(j);
 					blue_ghost.setY(i);
+					blue_ghost.box = {float(i) * 8 * 4 - 16, float(j) * 8 * 4 - 16, 32, 32};
 					break;
 				case(3):
 					pink_ghost.setX(j);
 					pink_ghost.setY(i);
+					pink_ghost.box = {float(i) * 8 * 4 - 16, float(j) * 8 * 4 - 16, 32, 32};
 					break;
 				case(4):
 					orange_ghost.setX(j);
 					orange_ghost.setY(i);
+					orange_ghost.box = {float(i) * 8 * 4 - 16, float(j) * 8 * 4 - 16, 32, 32};
 					break;
 				default:
 					break;
@@ -83,7 +87,7 @@ void GameManager::displayFigures(){
 
 	int posX = pacman.getX() * 8 * 4;
 	int posY = pacman.getY() * 8 * 4;
-	pacman.drawSprite(posX, posY);
+	pacman.drawSprite(posX, posY, pacman.getAng(), pacman.getScale(), WHITE);
 
 	posX = red_ghost.getX() * 32;
 	posY = red_ghost.getY() * 32;
@@ -112,6 +116,103 @@ void GameManager::drawMap(){
 //	When called draws the map and displays pacman and ghosts
 void GameManager::update(){
 
+/*
+
+	x is row-wise index
+	y is column-wise index
+	
+	*/
+	int x_round = round(pacman.getX());
+	int y_round = round(pacman.getY());
+
+	if (IsKeyPressed(KEY_SPACE))
+	{
+		// Tile toTile = this->map.getTile(y,x-1);
+		// std::cout<<map.getColLength()<<std::endl;
+		// for(int i = 0; i < map.getColLength();i ++)
+		// {
+		// 	toTile = this->map.getTile(i,y);
+		// 	std::cout<<toTile.isWall()<<std::endl;
+		// }
+		Tile toTile = this->map.getTile(x_round-1,y_round);
+		std::cout<<!toTile.isWall()<<std::endl;
+
+		toTile = this->map.getTile(x_round+1,y_round);
+		std::cout<<!toTile.isWall()<<std::endl;
+
+		
+		toTile = this->map.getTile(x_round,y_round-1);
+		std::cout<<!toTile.isWall()<<std::endl;
+
+		
+		toTile = this->map.getTile(x_round,y_round+1);
+		std::cout<<!toTile.isWall()<<std::endl;
+	}
+
+
+	if (IsKeyDown(KEY_W) or IsKeyDown(KEY_UP))
+	{
+
+		// pac_man.setAng(270);
+
+		// move forwards 
+		if(map.checkInMaze(x_round-1,y_round)){
+			Tile toTile = this->map.getTile(x_round-1,y_round);
+			if (!toTile.isWall() or (toTile.isWall() and x_round<pacman.getX()))
+			{
+				float x = pacman.getX() - GetFrameTime() * 1.f;
+				pacman.setX(x);
+			}
+			// else if (toTile.isWall() and x_round>pac_man.getX())
+			// {
+			// 	// compensate 
+			// 	pac_man.setX(x_round);
+			// }
+		}
+	}
+	else if (IsKeyDown(KEY_S) or IsKeyDown(KEY_DOWN))
+	{
+		// pac_man.setAng(90);
+		if(map.checkInMaze(x_round+1,y_round))
+		{
+			Tile toTile = this->map.getTile(x_round+1,y_round);
+			if (!toTile.isWall() or (toTile.isWall() and x_round>pacman.getX()))
+			{
+				float x = pacman.getX() + GetFrameTime() * 1.f;
+				pacman.setX(x);
+			}
+		}
+
+		
+	}
+	else if (IsKeyDown(KEY_A) or IsKeyDown(KEY_LEFT) )
+	{
+		// pac_man.setAng(180);
+		if(map.checkInMaze(x_round,y_round-1))
+		{
+			Tile toTile = this->map.getTile(x_round,y_round-1);
+			if (!toTile.isWall() or (toTile.isWall() and y_round<pacman.getY()))
+			{
+				float y = pacman.getY() - GetFrameTime() * 1.f;
+				pacman.setY(y);
+			}
+		}
+
+		
+	}
+	else if (IsKeyDown(KEY_D) or IsKeyDown(KEY_RIGHT))
+	{
+		// pac_man.setAng(0);
+		if(map.checkInMaze(x_round,y_round+1))
+		{
+			Tile toTile = this->map.getTile(x_round,y_round+1);
+			if (!toTile.isWall() or (toTile.isWall() and y_round>pacman.getY()))
+			{
+				float y = pacman.getY() + GetFrameTime() * 1.f;
+				pacman.setY(y);
+			}
+		}
+	}
 	drawMap();
 	displayFigures();
 
