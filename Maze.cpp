@@ -66,8 +66,8 @@ Maze::Maze(std::string mapFileName){
 
 	//Read mapFile
 	std::ifstream mapFile;
-	//std::string mapFilepath = MAP_PATH + mapFileName;
-	std::string mapFilepath = "./assets/maps/DEFAULT_MAP.txt";
+	std::string mapFilepath = MAP_PATH + mapFileName;
+	//std::string mapFilepath = "./assets/maps/DEFAULT_MAP.txt";
 	mapFile.open(mapFilepath);
 
 	//Init Tile Board
@@ -112,7 +112,7 @@ Maze::~Maze(){
 void Maze::drawMaze() {
 	for (size_t i = 0; i < tileBoard.size(); i++) {
 		for (size_t j = 0; j < tileBoard[i].size(); j++) {
-			// Simple mode: draw rectangle at correct position
+			// Simple mode: draw rectangle for each cell that has a wall.
 			if (tileBoard[i][j].isWall()) {
 				int posX = j * 8 * 4;
 				int posY = i * 8 * 4;
@@ -126,7 +126,6 @@ void Maze::drawMazeEX() {
 	Sprite map_sprites = Sprite("./assets/maps/textures/DEFAULT_TEXTURE.png");
 	for (size_t i = 0; i < tileBoard.size(); i++) {
 		for (size_t j = 0; j < tileBoard[i].size(); j++) {
-			// Simple mode: draw rectangle at correct position
 			if (tileBoard[i][j].isWall()){
 				// Check what cells have walls
 				int left = j - 1;
