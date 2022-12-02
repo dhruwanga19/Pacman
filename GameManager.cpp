@@ -125,13 +125,14 @@ void GameManager::update(){
 	int x_round = round(pacman.getX());
 	int y_round = round(pacman.getY());
 
+/* Test
 	if (IsKeyPressed(KEY_SPACE))
 	{
-		// Tile toTile = this->map.getTile(y,x-1);
+		// Tile toTile = this->map.getTile(x_round,y_round);
 		// std::cout<<map.getColLength()<<std::endl;
 		// for(int i = 0; i < map.getColLength();i ++)
 		// {
-		// 	toTile = this->map.getTile(i,y);
+		// 	toTile = this->map.getTile(i,0);
 		// 	std::cout<<toTile.isWall()<<std::endl;
 		// }
 		Tile toTile = this->map.getTile(x_round-1,y_round);
@@ -147,8 +148,10 @@ void GameManager::update(){
 		
 		toTile = this->map.getTile(x_round,y_round+1);
 		std::cout<<!toTile.isWall()<<std::endl;
-	}
 
+		std::cout<<y_round << ":" << pacman.getY()<<std::endl;
+	}
+*/
 
 	if (IsKeyDown(KEY_W) || IsKeyDown(KEY_UP))
 	{
@@ -198,9 +201,6 @@ void GameManager::update(){
 			// 	pac_man.setX(x_round);
 			// }
 		}
-
-
-		
 	}
 	else if (IsKeyDown(KEY_D) || IsKeyDown(KEY_RIGHT))
 	{
@@ -217,6 +217,10 @@ void GameManager::update(){
 		// pac_man.setAng(0);
 
 	}
+	randomWalk(red_ghost);
+	randomWalk(blue_ghost);
+	randomWalk(pink_ghost);
+	randomWalk(orange_ghost);
 	drawMap();
 	displayFigures();
 
@@ -283,9 +287,153 @@ void GameManager::setFlagUp(){
 
 //Flag for animation
 int GameManager::getFlag() {
-
 	return this->flag;
+}
 
+void GameManager::randomWalk(Ghost &ghost){
+	// approximate the coordinate of the ghost to the nearest point
+	int x_round = round(ghost.getX());
+	int y_round = round(ghost.getY());
+
+	if (IsKeyPressed(KEY_SPACE))
+	{
+		std::cout<<"x: " <<ghost.getX()<<std::endl;
+		std::cout<<"y: " <<ghost.getY()<<std::endl;
+	}
+
+	if (ghost.curDirection == 0)
+	{
+		if(map.checkInMaze(y_round-1,x_round))
+		{
+			Tile toTile = this->map.getTile(y_round-1,x_round);
+			if (!toTile.isWall() || (toTile.isWall() && y_round<ghost.getY()))
+			{
+				float y = ghost.getY() - GetFrameTime() * 2.f;
+				ghost.setY(y);
+			}
+			else
+			{
+				ghost.curDirection = sampleDirection(ghost);
+			}
+		}
+		
+		
+		// pac_man.setAng(270);
+
+		// move forwards 
+		
+	}
+	else if (ghost.curDirection == 1)
+	{
+		if(map.checkInMaze(y_round+1,x_round))
+		{
+			Tile toTile = this->map.getTile(y_round+1,x_round);
+			if (!toTile.isWall() || (toTile.isWall() && y_round>ghost.getY()))
+			{
+				float y = ghost.getY() + GetFrameTime() * 2.f;
+				ghost.setY(y);
+			}
+			else
+			{
+				ghost.curDirection = sampleDirection(ghost);
+			}
+		}
+		// pac_man.setAng(180);
+
+	}
+	else if (ghost.curDirection == 2 )
+	{
+
+		if(map.checkInMaze(y_round,x_round-1)){
+			Tile toTile = this->map.getTile(y_round,x_round-1);
+			if (!toTile.isWall() || (toTile.isWall() && x_round<ghost.getX()))
+			{
+				float x = ghost.getX() - GetFrameTime() * 2.f;
+				ghost.setX(x);
+			}
+			else
+			{
+				ghost.curDirection = sampleDirection(ghost);
+			}
+		}
+	}
+	else if (ghost.curDirection == 3)
+	{
+		// pac_man.setAng(90);
+		if(map.checkInMaze(y_round,x_round+1))
+		{
+			Tile toTile = this->map.getTile(y_round,x_round+1);
+			if (!toTile.isWall() || (toTile.isWall() && x_round>ghost.getX()))
+			{
+				float x = ghost.getX() + GetFrameTime() * 2.f;
+				ghost.setX(x);
+			}
+			else
+			{
+				ghost.curDirection = sampleDirection(ghost);
+			}
+		}
+		// pac_man.setAng(0);
+
+}
+	std::vector<int> avaiDirectionList = probing(ghost);
+	int avaiDirection = avaiDirectionList.size();
+	if (avaiDirection > ghost.currentAvailDirection)
+	{
+		ghost.canChangeDir = true;
+		ghost.currentAvailDirection = avaiDirection;
+	}
+	else if (avaiDirection < ghost.currentAvailDirection)
+	{
+		ghost.currentAvailDirection = avaiDirection;
+	}
+	// fabs for float version abs
+	if(ghost.canChangeDir && (fabs(float(y_round)-ghost.getY())<0.01) && (fabs(float(x_round)-ghost.getX())<0.01))
+	{
+		ghost.canChangeDir = false;
+		ghost.curDirection = sampleDirection(ghost);
+	}
+	if(fabs(ghost.getX())<0.5)
+	{
+		ghost.curDirection = 3;
+	}
+	if(fabs(ghost.getX()-map.getColLength()+1)<0.5)
+	{
+		ghost.curDirection = 2;
+	}
 }
 
 
+int GameManager::sampleDirection(Ghost ghost){
+	std::vector<int> available_direction = probing(ghost);
+	int index = rand() % available_direction.size(); // pick a random index
+	return available_direction[index]; // sample a new direction
+}
+
+std::vector<int> GameManager::probing(Ghost ghost){
+	int x_round = round(ghost.getX());
+	int y_round = round(ghost.getY());
+	std::vector<int> available_direction;
+	Tile upTile = this->map.getTile(y_round-1,x_round);
+	if (!upTile.isWall())
+	{
+		available_direction.push_back(0);
+	}
+
+	Tile downTile = this->map.getTile(y_round+1,x_round);
+	if (!downTile.isWall())
+	{
+		available_direction.push_back(1);
+	}
+	Tile leftTile = this->map.getTile(y_round,x_round-1);
+	if (!leftTile.isWall())
+	{
+		available_direction.push_back(2);
+	}
+	Tile rightTile = this->map.getTile(y_round,x_round+1);
+	if (!rightTile.isWall())
+	{
+		available_direction.push_back(3);
+	}
+	return available_direction;
+}

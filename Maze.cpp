@@ -465,7 +465,7 @@ int Maze::getRowLength()
 }
 
 bool Maze::checkInMaze(int x, int y){
-	return (x > 0) && (y > 0) && (x < COLUMN_LENGTH) && (y < ROW_LENGTH);
+	return (x >= 0) && (y >= 0) && (x < COLUMN_LENGTH) && (y < ROW_LENGTH);
 }
 
 Tile Maze::getTile(int x, int y){

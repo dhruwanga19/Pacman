@@ -11,6 +11,8 @@ public:
     Ghost();
     Ghost(int search, Pacman pacman);
     ~Ghost();
+    int curDirection = 0;
+    enum movingDirections : int { UP, DOWN, LEFT, RIGHT };
     void setSearch(int search);
     int getSearch();
     bool isVulnerable();
@@ -19,6 +21,8 @@ public:
     Pacman getPacman();
     void setChaseLocation();
     Tile getChaseLocation();
+    int currentAvailDirection = 2;
+    bool canChangeDir = false;
 
 
 private:

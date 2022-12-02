@@ -2,7 +2,7 @@
  * @file   GameManager.h
  * @brief  This class is used to deal with the handling of events and functions during the main game loop.
  *
- * @author Yogie and Q???
+ * @author Yogie and Qiuhao
  * @date   29/11/2022
 ***********************************************************************/
 #pragma once
@@ -190,6 +190,9 @@ class GameManager {
 		 * @return 
 		 */
 		int  getFlag();
+		void randomWalk(Ghost &ghost);
+		int sampleDirection(Ghost ghost);
+		std::vector<int> probing(Ghost ghost);
 };
 
 #endif
