@@ -1,4 +1,4 @@
-/*****************************************************************//**
++/*****************************************************************//**
  * @file   Maze.h
  * @brief  This class is used for the creation and management of the gameboard/maze.
  *
@@ -17,10 +17,22 @@
 
 class dot
 {
-	private:float x; // X position of dot
-	private:float y; // Y position of dot
-	private:bool super; //Determines if dot is super
-	private:Sprite dotSprite; // Spritesheet of Dot
+	/**
+	 * @brief X position of dot.
+	 */
+	private:float x;
+	/**
+	 * @brief Y position of dot.
+	 */
+	private:float y;
+	/**
+	 * @brief Determines if dot is super.
+	 */
+	private:bool super;
+	/**
+	 * @brief Spritesheet of Dot.
+	 */
+	private:Sprite dotSprite;
 
 /**
  * This constructor uses the default sprites and 0,0 to initilize dot.
