@@ -2,7 +2,7 @@
  * @file   GameManager.h
  * @brief  This class is used to deal with the handling of events and functions during the main game loop.
  *
- * @author Yogie and Qiuhao
+ * @author Connor and Qiuhao
  * @date   29/11/2022
 ***********************************************************************/
 #pragma once
