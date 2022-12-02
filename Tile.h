@@ -14,7 +14,7 @@
 // conditions fails
 #define _TILE_
 
-#include <include/raylib.h>
+#include <raylib.h>
 #include <string>
 
 /**

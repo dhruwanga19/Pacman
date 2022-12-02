@@ -133,6 +133,17 @@ void Maze::drawMaze() {
 				int posY = i * 8 * 4;
 				DrawRectangle(posX, posY, 32, 32, BLUE);
 			}
+			// Simple mode: draw circles for each cell that has a dot
+			if (tileBoard[i][j].hasPellet() == 1) {
+				int centX = (j * 8 * 4) - 8;
+				int centY = (i * 8 * 4) - 8;
+				DrawCircle(centX, centY, 4, WHITE);
+			}
+			if (tileBoard[i][j].hasPellet() == 2) {
+				int centX = (j * 8 * 4) - 8;
+				int centY = (i * 8 * 4) - 8;
+				DrawCircle(centX, centY, 8, WHITE);
+			}
 		}
 	}
 }
@@ -451,6 +462,10 @@ int Maze::getColLength()
 int Maze::getRowLength()
 {
 	return ROW_LENGTH;
+}
+
+bool Maze::checkInMaze(int x, int y){
+	return (x > 0) && (y > 0) && (x < COLUMN_LENGTH) && (y < ROW_LENGTH);
 }
 
 Tile Maze::getTile(int x, int y){

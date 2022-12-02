@@ -41,22 +41,20 @@ const int ROW_LENGTH = 21;
 const int COLUMN_LENGTH = 21;
 
 class Maze {
-	/**
-	 * @brief 2D Vector to store tiles.
-     */
+/**
+* @brief 2D Vector to store tiles.
+*/
 private:std::vector<std::vector<Tile>> tileBoard;
-	/**
-	 * @brief Number of dots in maze.
-	 */
+/**
+* @brief Number of dots in maze.
+*/
 private:int numDots;
-
 	   /**
 	    * Construct a maze object using a hardcoded default map.
 	    * @brief Default Constructor.
 	    * @see Maze(std::string mapFileName)
 	    */
 public:Maze();
-
 	  /**
 	   * Construct a maze object using the supplied map.
 	   * @brief Constructor.
@@ -64,8 +62,7 @@ public:Maze();
 	   * @see Maze()
 	   */
 public:Maze(std::string mapFileName);
-
-	  /* Destructor*/
+	  /* Destructor */
 public:~Maze();
 	  /**
 	   * Draws the maze object using simple rectangles to represent the walls.
@@ -114,15 +111,24 @@ public:void setTile(int x, int y, TileType type);
 	   * @return tileBoard data member, 2D vector containing tiles of the maze.
 	   */
 public:std::vector<std::vector<Tile>> getTileBoard();
-
+	  /**
+	   * @brief Getter Method: COLUMN_LENGTH.
+	   * @return COLUMN_LENGTH 
+	   */
 public:int getColLength();
-
+	  /**
+	   * @brief Getter Method: ROW_LENGTH.
+	   * @return ROW_LENGTH
+	   */
 public:int getRowLength();
-
-public:bool checkInMaze(int x, int y){
-	return (x>0) and (y>0) and (x<COLUMN_LENGTH) and (y<ROW_LENGTH);
-
-}
+	  /**
+	   * Take in a coordinate(x,y) and check if it is a valid index in the maze.
+	   * @brief Check if a (x,y) is in the maze
+	   * @param x row-wise coordinate
+	   * @param y column-vise coordinate
+	   * @return True if (x,y) is in mazr, False otherwise.
+	   */
+public:bool checkInMaze(int x, int y);
 };
 
 #endif // _MAZE_

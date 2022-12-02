@@ -4,7 +4,7 @@
 
 #define ENTITY
 
-#include "include/raylib.h"
+#include "raylib.h"
 #include "Sprite.h"
 #include "Tile.h"
 

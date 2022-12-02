@@ -150,12 +150,12 @@ void GameManager::update(){
 	}
 
 
-	if (IsKeyDown(KEY_W) or IsKeyDown(KEY_UP))
+	if (IsKeyDown(KEY_W) || IsKeyDown(KEY_UP))
 	{
 		if(map.checkInMaze(y_round-1,x_round))
 		{
 			Tile toTile = this->map.getTile(y_round-1,x_round);
-			if (!toTile.isWall() or (toTile.isWall() and y_round<pacman.getY()))
+			if (!toTile.isWall() || (toTile.isWall() && y_round<pacman.getY()))
 			{
 				float y = pacman.getY() - GetFrameTime() * 2.f;
 				pacman.setY(y);
@@ -168,12 +168,12 @@ void GameManager::update(){
 		// move forwards 
 		
 	}
-	else if (IsKeyDown(KEY_S) or IsKeyDown(KEY_DOWN))
+	else if (IsKeyDown(KEY_S) || IsKeyDown(KEY_DOWN))
 	{
 		if(map.checkInMaze(y_round+1,x_round))
 		{
 			Tile toTile = this->map.getTile(y_round+1,x_round);
-			if (!toTile.isWall() or (toTile.isWall() and y_round>pacman.getY()))
+			if (!toTile.isWall() || (toTile.isWall() && y_round>pacman.getY()))
 			{
 				float y = pacman.getY() + GetFrameTime() * 2.f;
 				pacman.setY(y);
@@ -182,12 +182,12 @@ void GameManager::update(){
 		// pac_man.setAng(180);
 		
 	}
-	else if (IsKeyDown(KEY_A) or IsKeyDown(KEY_LEFT) )
+	else if (IsKeyDown(KEY_A) || IsKeyDown(KEY_LEFT) )
 	{
 
 		if(map.checkInMaze(y_round,x_round-1)){
 			Tile toTile = this->map.getTile(y_round,x_round-1);
-			if (!toTile.isWall() or (toTile.isWall() and x_round<pacman.getX()))
+			if (!toTile.isWall() || (toTile.isWall() && x_round<pacman.getX()))
 		{
 				float x = pacman.getX() - GetFrameTime() * 2.f;
 				pacman.setX(x);
@@ -202,13 +202,13 @@ void GameManager::update(){
 
 		
 	}
-	else if (IsKeyDown(KEY_D) or IsKeyDown(KEY_RIGHT))
+	else if (IsKeyDown(KEY_D) || IsKeyDown(KEY_RIGHT))
 	{
 		// pac_man.setAng(90);
 		if(map.checkInMaze(y_round,x_round+1))
 		{
 			Tile toTile = this->map.getTile(y_round,x_round+1);
-			if (!toTile.isWall() or (toTile.isWall() and x_round>pacman.getX()))
+			if (!toTile.isWall() || (toTile.isWall() && x_round>pacman.getX()))
 			{
 				float x = pacman.getX() + GetFrameTime() * 2.f;
 				pacman.setX(x);
