@@ -80,6 +80,7 @@ Maze::Maze(std::string mapFileName){
 	//Init Tile Board
 	if (mapFile.is_open()) {
 		std::string line;
+		dot newDot;
 		int i = 0;
 		while (getline(mapFile, line)) {
 			for (int j = 0; j < COLUMN_LENGTH; j++) {
@@ -89,10 +90,16 @@ Maze::Maze(std::string mapFileName){
 					newTile.set_Wall(true);
 					break;
 				case '.':
+					newDot = dot(i, j, false);
+					dots.push_back(newDot);
 					newTile.setPellet(1);
+					numDots++;
 					break;
 				case 'o':
+					newDot = dot(i, j, true);
+					dots.push_back(newDot);
 					newTile.setPellet(1);
+					numDots++;
 					newTile.setSuperPellet(true);
 					break;
 				case 'P':
@@ -117,6 +124,7 @@ Maze::Maze(std::string mapFileName){
 			}
 			i++;
 		}
+		std::cout<<"number dots" << numDots << " vec len:" << dots.size()<<std::endl;
 	}
 }
 

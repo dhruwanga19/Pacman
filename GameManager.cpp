@@ -1,3 +1,11 @@
+/*****************************************************************//**
+ * @file   GameManager.cpp
+ * @brief  By Qiuhao part: Ghosts can randomly walk (function probing, sample direction); 
+ * 		   			       Ghosts catch pacman, game over.
+ * 		   			       pacman eat dot to earn score
+ *         			       use keyboard to control the pacman
+ * @date   29/11/2022
+***********************************************************************/
 #include "GameManager.h"
 #define PACMAN_SPRITE_PATH "./assets/sprites/DEFAULT_PACMAN.png"
 #define GHOST_SPRITE_PATH "./assets/sprites/DEFAULT_GHOST.png"
@@ -122,107 +130,115 @@ void GameManager::update(){
 	y is column-wise index
 	
 	*/
-	int x_round = round(pacman.getX());
-	int y_round = round(pacman.getY());
-
-/* Test
-	if (IsKeyPressed(KEY_SPACE))
+	if(gameRun)
 	{
-		// Tile toTile = this->map.getTile(x_round,y_round);
-		// std::cout<<map.getColLength()<<std::endl;
-		// for(int i = 0; i < map.getColLength();i ++)
-		// {
-		// 	toTile = this->map.getTile(i,0);
-		// 	std::cout<<toTile.isWall()<<std::endl;
-		// }
-		Tile toTile = this->map.getTile(x_round-1,y_round);
-		std::cout<<!toTile.isWall()<<std::endl;
 
-		toTile = this->map.getTile(x_round+1,y_round);
-		std::cout<<!toTile.isWall()<<std::endl;
 
 		
-		toTile = this->map.getTile(x_round,y_round-1);
-		std::cout<<!toTile.isWall()<<std::endl;
+		int x_round = round(pacman.getX());
+		int y_round = round(pacman.getY());
 
-		
-		toTile = this->map.getTile(x_round,y_round+1);
-		std::cout<<!toTile.isWall()<<std::endl;
-
-		std::cout<<y_round << ":" << pacman.getY()<<std::endl;
-	}
-*/
-
-	if (IsKeyDown(KEY_W) || IsKeyDown(KEY_UP))
-	{
-		if(map.checkInMaze(y_round-1,x_round))
+		if (IsKeyPressed(KEY_SPACE))
 		{
-			Tile toTile = this->map.getTile(y_round-1,x_round);
-			if (!toTile.isWall() || (toTile.isWall() && y_round<pacman.getY()))
-			{
-				float y = pacman.getY() - GetFrameTime() * 2.f;
-				pacman.setY(y);
-			}
-		}
-		
-
-		// pac_man.setAng(270);
-
-		// move forwards 
-		
-	}
-	else if (IsKeyDown(KEY_S) || IsKeyDown(KEY_DOWN))
-	{
-		if(map.checkInMaze(y_round+1,x_round))
-		{
-			Tile toTile = this->map.getTile(y_round+1,x_round);
-			if (!toTile.isWall() || (toTile.isWall() && y_round>pacman.getY()))
-			{
-				float y = pacman.getY() + GetFrameTime() * 2.f;
-				pacman.setY(y);
-			}
-		}
-		// pac_man.setAng(180);
-		
-	}
-	else if (IsKeyDown(KEY_A) || IsKeyDown(KEY_LEFT) )
-	{
-
-		if(map.checkInMaze(y_round,x_round-1)){
-			Tile toTile = this->map.getTile(y_round,x_round-1);
-			if (!toTile.isWall() || (toTile.isWall() && x_round<pacman.getX()))
-		{
-				float x = pacman.getX() - GetFrameTime() * 2.f;
-				pacman.setX(x);
-			}
-			// else if (toTile.isWall() and x_round>pac_man.getX())
+			float x = pacman.getX();
+			float y = pacman.getY();
+			std::cout<<"current"<<x<<","<<y<<std::endl;
+			// loopDots();
+			// Tile toTile = this->map.getTile(x_round,y_round);
+			// std::cout<<map.getColLength()<<std::endl;
+			// for(int i = 0; i < map.getColLength();i ++)
 			// {
-			// 	// compensate 
-			// 	pac_man.setX(x_round);
+			// 	toTile = this->map.getTile(i,0);
+			// 	std::cout<<toTile.isWall()<<std::endl;
 			// }
+			// Tile toTile = this->map.getTile(x_round-1,y_round);
+			// std::cout<<!toTile.isWall()<<std::endl;
+
+			// toTile = this->map.getTile(x_round+1,y_round);
+			// std::cout<<!toTile.isWall()<<std::endl;
+
+	
+			// toTile = this->map.getTile(x_round,y_round-1);
+			// std::cout<<!toTile.isWall()<<std::endl;
+
+	
+			// toTile = this->map.getTile(x_round,y_round+1);
+			// std::cout<<!toTile.isWall()<<std::endl; 
+
+			// std::cout<<y_round << ":" << pacman.getY()<<std::endl;
 		}
-	}
-	else if (IsKeyDown(KEY_D) || IsKeyDown(KEY_RIGHT))
-	{
-		// pac_man.setAng(90);
-		if(map.checkInMaze(y_round,x_round+1))
+
+
+		if (IsKeyDown(KEY_W) or IsKeyDown(KEY_UP))
 		{
-			Tile toTile = this->map.getTile(y_round,x_round+1);
-			if (!toTile.isWall() || (toTile.isWall() && x_round>pacman.getX()))
+			if(map.checkInMaze(y_round-1,x_round))
 			{
-				float x = pacman.getX() + GetFrameTime() * 2.f;
-				pacman.setX(x);
+				Tile toTile = this->map.getTile(y_round-1,x_round);
+				if (!toTile.isWall() || (toTile.isWall() && y_round<pacman.getY()))
+				{
+					float y = pacman.getY() - GetFrameTime() * 2.f;
+					pacman.setY(y);
+				}
+			}
+			
+
+			// pac_man.setAng(270);
+
+			// move forwards 
+			
+		}
+		else if (IsKeyDown(KEY_S) || IsKeyDown(KEY_DOWN))
+		{
+			if(map.checkInMaze(y_round+1,x_round))
+			{
+				Tile toTile = this->map.getTile(y_round+1,x_round);
+				if (!toTile.isWall() || (toTile.isWall() && y_round>pacman.getY()))
+				{
+					float y = pacman.getY() + GetFrameTime() * 2.f;
+					pacman.setY(y);
+				}
+			}
+			// pac_man.setAng(180);
+			
+		}
+		else if (IsKeyDown(KEY_A) || IsKeyDown(KEY_LEFT) )
+		{
+
+			if(map.checkInMaze(y_round,x_round-1)){
+				Tile toTile = this->map.getTile(y_round,x_round-1);
+				if (!toTile.isWall() || (toTile.isWall() && x_round<pacman.getX()))
+				{
+					float x = pacman.getX() - GetFrameTime() * 2.f;
+					pacman.setX(x);
+				}
 			}
 		}
-		// pac_man.setAng(0);
+		else if (IsKeyDown(KEY_D) || IsKeyDown(KEY_RIGHT))
+		{
+			// pac_man.setAng(90);
+			if(map.checkInMaze(y_round,x_round+1))
+			{
+				Tile toTile = this->map.getTile(y_round,x_round+1);
+				if (!toTile.isWall() || (toTile.isWall() && x_round>pacman.getX()))
+				{
+					float x = pacman.getX() + GetFrameTime() * 2.f;
+					pacman.setX(x);
+				}
+			}
+			// pac_man.setAng(0);
 
+		}
+		randomWalk(red_ghost);
+		randomWalk(blue_ghost);
+		randomWalk(pink_ghost);
+		randomWalk(orange_ghost);
+		loopDots();
+		drawMap();
+		displayFigures();
 	}
-	randomWalk(red_ghost);
-	randomWalk(blue_ghost);
-	randomWalk(pink_ghost);
-	randomWalk(orange_ghost);
-	drawMap();
-	displayFigures();
+	else{
+			DrawText("GAME OVER! PRESS exit TO QUIT!", 60, GetScreenWidth()/2 - 10, 30, PURPLE);
+	}
 
 }
 
@@ -290,16 +306,26 @@ int GameManager::getFlag() {
 	return this->flag;
 }
 
+void GameManager::catchPacman(Ghost ghost)
+{
+	if((fabs(ghost.getX()-pacman.getX())<0.3) && (fabs(ghost.getY()-pacman.getY())<0.3))
+	{
+		gameRun = false;
+		DrawText("GAME OVER! PRESS exit TO QUIT!", GetScreenWidth()/2 - 100, GetScreenWidth()/2 - 10, 30, PURPLE);
+	}
+}
+
 void GameManager::randomWalk(Ghost &ghost){
 	// approximate the coordinate of the ghost to the nearest point
+	catchPacman(ghost);
 	int x_round = round(ghost.getX());
 	int y_round = round(ghost.getY());
 
-	if (IsKeyPressed(KEY_SPACE))
-	{
-		std::cout<<"x: " <<ghost.getX()<<std::endl;
-		std::cout<<"y: " <<ghost.getY()<<std::endl;
-	}
+	// if (IsKeyPressed(KEY_SPACE))
+	// {
+	// 	std::cout<<"x: " <<ghost.getX()<<std::endl;
+	// 	std::cout<<"y: " <<ghost.getY()<<std::endl;
+	// }
 
 	if (ghost.curDirection == 0)
 	{
@@ -436,4 +462,43 @@ std::vector<int> GameManager::probing(Ghost ghost){
 		available_direction.push_back(3);
 	}
 	return available_direction;
+}
+
+void GameManager::loopDots(){
+	float closest = 100;
+	float cx = -1;
+	float cy = -1;
+	float x = pacman.getY();  // row
+	float y = pacman.getX();
+	for(int i = 0; i < map.dots.size(); i++)
+	{
+		// std::cout<<map.dots[i].getX()<<","<<map.dots[i].getY()<<std::endl;
+
+		if(fabs(map.dots[i].getY()-y) + fabs(map.dots[i].getX()-x) < closest)
+		{
+			closest = fabs(map.dots[i].getY()-y) + fabs(map.dots[i].getX()-x);
+			cx = map.dots[i].getX();
+			cy = map.dots[i].getY();
+		}
+		if((fabs(map.dots[i].getY()-y)<0.3) && (fabs(map.dots[i].getX()-x)<0.3))
+		{
+			map.disableDot(map.dots[i].getX(),map.dots[i].getY());
+			map.dots.erase(map.dots.begin() + i);
+			this->score++;
+			displayScore = true;
+		}
+	}
+	// std::cout<<cx<<","<<cy<<std::endl;
+	// std::cout<<"current"<<x<<","<<y<<std::endl;
+	if (displayScore && score > 0)
+	{
+		displayTime += GetFrameTime();
+		DrawText(TextFormat("Score: %i!", score), GetScreenWidth()/2 - 100, GetScreenWidth()/2 - 10, 20, YELLOW);
+		if (displayTime >= 1)
+		{
+			displayTime = 0;
+			displayScore = false;
+		}
+	}
+
 }

@@ -50,7 +50,7 @@ public:dot();
  * @see dot()
  * @see dot(float x, float y, Sprite s, bool Super)
  */
-public:dot(float x, float y, Sprite s);
+public:dot(float x, float y);
 /**
  * This constructor uses the position (x,y) to determine where dots spawn, and uses the supplied sprite, and a boolean value to determine if this dot is Super.
  * @brief Constructor
@@ -61,8 +61,15 @@ public:dot(float x, float y, Sprite s);
  * @see dot()
  * @see @see dot(float x, float y, Sprite s)
  */
-public:dot(float x, float y, Sprite s, bool Super);
-
+public:dot(float x, float y, bool Super);
+public:float getX()
+{
+	return this->x;
+}
+public:float getY()
+{
+	return this->y;
+}
 };
 
 #endif //_dot_

@@ -20,6 +20,7 @@
 #include <string>
 #include <vector>
 #include "Tile.h"
+#include "dot.h"
 #include <iterator>
 #include "Sprite.h"
 
@@ -48,13 +49,16 @@ private:std::vector<std::vector<Tile>> tileBoard;
 /**
 * @brief Number of dots in maze.
 */
-private:int numDots;
+private:int numDots = 0;
+
 	   /**
 	    * Construct a maze object using a hardcoded default map.
 	    * @brief Default Constructor.
 	    * @see Maze(std::string mapFileName)
 	    */
+public:std::vector<dot> dots;
 public:Maze();
+
 	  /**
 	   * Construct a maze object using the supplied map.
 	   * @brief Constructor.
@@ -62,7 +66,8 @@ public:Maze();
 	   * @see Maze()
 	   */
 public:Maze(std::string mapFileName);
-	  /* Destructor */
+
+	  /* Destructor*/
 public:~Maze();
 	  /**
 	   * Draws the maze object using simple rectangles to represent the walls.
@@ -129,6 +134,11 @@ public:int getRowLength();
 	   * @return True if (x,y) is in mazr, False otherwise.
 	   */
 public:bool checkInMaze(int x, int y);
+
+public:void disableDot(int x, int y){
+	tileBoard[x][y].setPellet(0);
+	tileBoard[x][y].setSuperPellet(false);
+}
 };
 
 #endif // _MAZE_

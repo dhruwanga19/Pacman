@@ -12,7 +12,7 @@
 #define _GameManager_
 
 
-#include "raylib.h"
+#include "include/raylib.h"
 //#include <unistd.h>
 #include <string>
 #include <vector>
@@ -28,6 +28,9 @@
 
 class GameManager {
 	private:
+		bool gameRun = true;
+		bool displayScore = false;
+		float displayTime = 0;
 		/**
 		 * @brief Vector storing ghost instances.
 		 */
@@ -99,7 +102,7 @@ class GameManager {
 		/**
 		 * @brief Player Score.
 		 */
-		int score;
+		int score = 0;
 		/**
 		 * @brief Number of Ghosts on maze.
 		 */
@@ -193,6 +196,8 @@ class GameManager {
 		void randomWalk(Ghost &ghost);
 		int sampleDirection(Ghost ghost);
 		std::vector<int> probing(Ghost ghost);
+		void loopDots();
+		void catchPacman(Ghost ghost);
 };
 
 #endif
