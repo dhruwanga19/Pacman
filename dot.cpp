@@ -9,17 +9,19 @@ dot::dot(){
 	this->super = false;
 }
 
-dot::dot(float x, float y, Sprite s){
+dot::dot(float x, float y){
 	this->x = x;
 	this->y = y;
+	Sprite s = Sprite("./assets/maps/textures/DEFAULT_TEXTURE");
 	s.changeFrame(static_cast<int>(spriteType::PELLET));
 	this->dotSprite = s;
 	this->super = false;
 }
 
-dot::dot(float x, float y, Sprite s, bool Super){
+dot::dot(float x, float y, bool Super){
 	this->x = x;
 	this->y = y;
+	Sprite s = Sprite("./assets/maps/textures/DEFAULT_TEXTURE");
 	if (Super) {
 		s.changeFrame(static_cast<int>(spriteType::SUPER_PELLET));
 	}
