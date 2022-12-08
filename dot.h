@@ -1,4 +1,4 @@
-+/*****************************************************************//**
+/*****************************************************************//**
  * @file   Maze.h
  * @brief  This class is used for the creation and management of the gameboard/maze.
  *
@@ -13,7 +13,6 @@
 
 #include <raylib.h>
 #include "Sprite.h"
-#include "Maze.h"
 
 class dot
 {

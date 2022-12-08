@@ -12,7 +12,7 @@
 #define _GameManager_
 
 
-#include "include/raylib.h"
+#include "raylib.h"
 //#include <unistd.h>
 #include <string>
 #include <vector>

@@ -14,7 +14,7 @@
 // conditions fails
 #define _SPRITE_
 
-#include <include/raylib.h>
+#include <raylib.h>
 #include <iostream>
 #include <fstream>
 #include <string>

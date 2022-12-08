@@ -169,7 +169,7 @@ void GameManager::update(){
 		}
 
 
-		if (IsKeyDown(KEY_W) or IsKeyDown(KEY_UP))
+		if (IsKeyDown(KEY_W) || IsKeyDown(KEY_UP))
 		{
 			if(map.checkInMaze(y_round-1,x_round))
 			{
