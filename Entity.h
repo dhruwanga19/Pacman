@@ -11,7 +11,7 @@
 
 #define ENTITY
 
-#include "raylib.h"
+#include "./include/raylib.h"
 #include "Sprite.h"
 #include "Tile.h"
 

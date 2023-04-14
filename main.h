@@ -7,8 +7,8 @@
 // conditions fails
 #define _GAME_
 
-#include "raylib.h"
-#include "raymath.h"
+#include "./include/raylib.h"
+#include "./include/raymath.h"
 #include "Audio.h"
 #include "Maze.h"
 #include "Pacman.h"

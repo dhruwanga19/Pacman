@@ -11,7 +11,7 @@
 
 #define _dot_
 
-#include <raylib.h>
+#include "include/raylib.h"
 #include "Sprite.h"
 
 class dot

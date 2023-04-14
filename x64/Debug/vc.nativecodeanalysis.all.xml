@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?><DEFECTS><DEFECT>
+    <SFA>
+      <FILEPATH>D:\Dhruwang_Western\Year_3\CS3307_C++\raylib-master\projects\VS2022\group20\</FILEPATH>
+      <FILENAME>Ghost.cpp</FILENAME>
+      <LINE>3</LINE>
+      <COLUMN>7</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'Ghost::search' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>Ghost::{ctor}</FUNCTION>
+    <DECORATED>??0Ghost@@QEAA@XZ</DECORATED>
+    <FUNCLINE>3</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>Ghost::search</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT></DEFECTS>

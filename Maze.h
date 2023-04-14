@@ -14,7 +14,7 @@
 // conditions fails
 #define _MAZE_
 
-#include <raylib.h>
+#include "./include/raylib.h"
 #include <iostream>
 #include <fstream>
 #include <string>
