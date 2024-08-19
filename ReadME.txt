@@ -1,4 +1,6 @@
-We evalate our program in an Ubuntu system.
+Pacman clone game in CPP
+
+We evaluate our program in an Ubuntu system.
 
 The first step is to compile the dependent libraries.
 1. install relevent packages
@@ -15,4 +17,4 @@ cd to the folder “group20”
 run “make” command
 run “./game”enjoy the game!
 
-Any issues, feel free to contact qzeng53@uwo.ca
+Any issues, feel free to contact qzeng53@uwo.ca and dakbari2@uwo.ca
